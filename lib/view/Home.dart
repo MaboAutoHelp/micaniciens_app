@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:micaniciens_app/view/Pagepersonnelle.dart';
+import 'package:micaniciens_app/view/QRViewExample.dart';
 
 class Home extends StatefulWidget {
   final String MicanicienID;
@@ -40,6 +41,7 @@ class _HomeState extends State<Home> {
             ),
              Center(
               //child: Service(userID: widget.userID),
+              child: QRViewExample(),
             ),
              Center(
              //child: Notifications(userID: widget.userID),
