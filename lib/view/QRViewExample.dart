@@ -60,7 +60,9 @@ class _QRViewExampleState extends State<QRViewExample> {
                   ElevatedButton(
                     onPressed: () async {
                       try {
+                        print('Fetching service details for ID: $serviceID');
                         var serviceDetails = await qrController.getServiceDetails(serviceID!);
+                        print('Service Details: $serviceDetails');
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -91,6 +93,7 @@ class _QRViewExampleState extends State<QRViewExample> {
     controller.scannedDataStream.listen((scanData) {
       setState(() {
         serviceID = scanData.code; // استخراج معرف الخدمة من QR
+        print('Scanned Service ID: $serviceID'); // التحقق من القيمة
         isServiceDetected = true; // تفعيل الزر
       });
       controller.pauseCamera(); // إيقاف الكاميرا بعد المسح
