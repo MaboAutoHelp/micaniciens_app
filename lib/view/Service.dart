@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:micaniciens_app/controller/NotificationsController.dart';
 import 'package:micaniciens_app/controller/ServiceController.dart';
 
 class Service extends StatefulWidget {
@@ -22,6 +23,24 @@ class _ServiceState extends State<Service> {
   String formatDate(String dateStr) {
     DateTime dateTime = DateTime.parse(dateStr);
     return DateFormat('yyyy-MM-dd').format(dateTime);
+  }
+
+  void handleAction(String id, String action) async {
+    String itaValue = (action == 'accept') ? 'La réparation est terminée' : 'Puis un problème';
+
+    try {
+      await Notificationscontroller.updateServiceIta(id, itaValue);
+      setState(() {
+        notifications = Notificationscontroller.getNotifications();
+      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Service $itaValue successfully')),
+      );
+    } catch (error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Failed to update service: $error')),
+      );
+    }
   }
 
   @override
@@ -61,11 +80,11 @@ class _ServiceState extends State<Service> {
                       children: [
                         IconButton(
                           icon: const Icon(Icons.check, color: Colors.green),
-                          onPressed: ()=>{},
+                          onPressed: () => handleAction(notification['_id'], 'accept'),
                         ),
                         IconButton(
                           icon: const Icon(Icons.close, color: Colors.red),
-                          onPressed: ()=>{},
+                          onPressed: () => handleAction(notification['_id'], 'reject'),
                         ),
                       ],
                     ),
