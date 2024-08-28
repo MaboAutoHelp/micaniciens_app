@@ -15,13 +15,15 @@ class _PagepersonnelleState extends State<Pagepersonnelle> {
   @override
   void initState() {
     super.initState();
-    _MicanicienData =  Pagepersonnellecontroller().GetMicanicien(widget.MicanicienID);
+    _MicanicienData = Pagepersonnellecontroller().GetMicanicien(widget.MicanicienID);
   }
 
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
-     
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Page Personnelle'),
+      ),
       body: FutureBuilder<Map<String, dynamic>>(
         future: _MicanicienData,
         builder: (context, snapshot) {
@@ -30,17 +32,41 @@ class _PagepersonnelleState extends State<Pagepersonnelle> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (snapshot.hasData) {
-            // Assuming that the name is stored in 'name' field
-            String adminName = snapshot.data!['username'] ?? 'Unknown Admin';
-            String adminpassword = snapshot.data!['password'] ?? 'Unknown Admin';
-            return Center(
-              child: Text(
-                adminName,
-                style: const TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue, // هنا تغير اللون كما تريد
-                ),
+            // استخراج البيانات من الـ snapshot
+            String name = snapshot.data!['name'] ?? 'Unknown Name';
+            String special = snapshot.data!['special'] ?? 'Unknown Special';
+            double revenu = snapshot.data!['Revenu']?.toDouble() ?? 0.0;
+
+            return Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Name: $name',
+                    style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.blue,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Special: $special',
+                    style: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.black87,
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                  Text(
+                    'Revenu: \$${revenu.toStringAsFixed(2)}',
+                    style: const TextStyle(
+                      fontSize: 20,
+                      color: Colors.green,
+                    ),
+                  ),
+                ],
               ),
             );
           } else {

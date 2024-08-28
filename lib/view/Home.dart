@@ -34,7 +34,7 @@ class _HomeState extends State<Home> {
                 icon: Icon(Icons.circle_notifications),
               ),
                Tab(
-                icon: Icon(Icons.circle_notifications),
+                icon: Icon(Icons.airport_shuttle),
               ),
             ],
           ),

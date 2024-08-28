@@ -71,6 +71,7 @@ class _ServiceState extends State<Service> {
                         Text('Tel: ${(notification['teluser'])}'),
                         Text('Date: ${formatDate(notification['date'])}'),
                         Text('Time: ${notification['time'] ?? 'No time'}'),
+                        Text('prix: ${notification['prix'] ?? 'No prix'}'),
                         Text('Car Type: ${notification['carType'] ?? 'No car type'}'),
                         Text('Ita Type: ${notification['ita'] ?? 'No ita type'}'),
                       ],
