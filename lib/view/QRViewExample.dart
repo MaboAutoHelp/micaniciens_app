@@ -6,6 +6,8 @@ import 'package:qr_code_scanner/qr_code_scanner.dart';
 //import 'service_details_page.dart'; // صفحة عرض تفاصيل الخدمة
 
 class QRViewExample extends StatefulWidget {
+  final String ID1;
+  const QRViewExample({super.key, required this.ID1});
   @override
   _QRViewExampleState createState() => _QRViewExampleState();
 }
@@ -52,7 +54,7 @@ class _QRViewExampleState extends State<QRViewExample> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 serviceID != null
-                    ? Text('Service ID: $serviceID')
+                    ? Text('ID: $serviceID')
                     : Text('Scan a code'),
                 if (isServiceDetected)
                   ElevatedButton(
@@ -66,6 +68,7 @@ class _QRViewExampleState extends State<QRViewExample> {
                           MaterialPageRoute(
                             builder: (context) => ServiceDetailsPage(
                               serviceDetails: serviceDetails,
+                              ID1: widget.ID1,
                               onUpdateStatus: (String newStatus) {
                                 Navigator.pop(context); // العودة بعد تحديث الخدمة
                               },
@@ -104,6 +107,7 @@ class _QRViewExampleState extends State<QRViewExample> {
     super.dispose();
   }
 }
+
 
 
 /*class _QRViewExampleState extends State<QRViewExample> {

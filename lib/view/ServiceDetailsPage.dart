@@ -160,9 +160,12 @@ class ServiceDetailsPage extends StatelessWidget {
   final Map<String, dynamic> serviceDetails;
   final Function(String) onUpdateStatus;
 
+  final String ID1; // Define the ID1 field
+
   ServiceDetailsPage({
     required this.serviceDetails,
     required this.onUpdateStatus,
+    required this.ID1,
   });
 
   @override
@@ -176,11 +179,9 @@ class ServiceDetailsPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Service Name: ${serviceDetails['serviceName']}'),
-            Text('Date: ${serviceDetails['date']}'),
-            Text('Time: ${serviceDetails['time']}'),
-            Text('Car Type: ${serviceDetails['carType']}'),
-            Text('Price: ${serviceDetails['prix']}'),
+            Text('username: ${serviceDetails['username']}'),
+            Text('Revenu: ${serviceDetails['Revenu']}'),
+            
             SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -192,7 +193,7 @@ class ServiceDetailsPage extends StatelessWidget {
                           'Service ID: ${serviceDetails['_id']}'); // التحقق من أن المعرف ليس null
                       print('ITA Value: Réparation commencée');
                       // تحديث حالة الخدمة إلى "Réparation commencée"
-                      await Notificationscontroller.updateServiceIta(serviceDetails['_id'], 'Réparation commencée');
+                      await Notificationscontroller.updateServiceIta(serviceDetails['_id'], ID1);
 
                       // تنفيذ الإجراء الإضافي الذي ترغب فيه عند تغيير الحالة
                       onUpdateStatus('complete');

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:micaniciens_app/view/Notifications.dart';
-import 'package:micaniciens_app/view/Pagepersonnelle.dart';
+
 import 'package:micaniciens_app/view/QRViewExample.dart';
-import 'package:micaniciens_app/view/Service.dart';
 
 class Home extends StatefulWidget {
   final String MicanicienID;
@@ -41,19 +39,12 @@ class _HomeState extends State<Home> {
         ),
         body: TabBarView(
           children: <Widget>[
-            Center(
-              child: Pagepersonnelle( MicanicienID: widget.MicanicienID),
-            ),
+            
              Center(
               
-              child: QRViewExample(),
+              child: QRViewExample(ID1: widget.MicanicienID),
             ),
-             Center(
-             child: Notifications(MicanicienID: widget.MicanicienID),
-            ),
-             Center(
-              child: Service(MicanicienID: widget.MicanicienID),
-             ),
+             
           ],
         ),
       ),
