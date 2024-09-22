@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 class QRViewExampleController {
   Future<Map<String, dynamic>> getServiceDetails(String serviceID) async {
-    var url = "http://192.168.1.17:8000/Service/getServiceID/$serviceID";
+    var url = "http://192.168.1.18:8000/admin/getAdmin/$serviceID";
     var response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
