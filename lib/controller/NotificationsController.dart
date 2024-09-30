@@ -6,7 +6,7 @@ class Notificationscontroller {
   
 
   static Future<void> updateServiceIta(String id, String id1 ) async {
-    var url = "http://192.168.1.18:8000/Revenus/Revenus";
+    var url = "http://192.168.1.27:8000/Revenus/Revenus";
     var response = await http.post(
       Uri.parse(url),
       headers: {'Content-Type': 'application/json'},
